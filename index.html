@@ -9,8 +9,8 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #000;  /* Schwarzer Hintergrund */
-      color: white;            /* Weiße Schrift */
+      background-color: #000;
+      color: white;
       text-align: center;
     }
 
@@ -32,19 +32,10 @@
       height: auto;
       margin-top: 10px;
       margin-bottom: 20px;
-
     }
 
-    .start-screen h1 {
+    .start-screen h1, .swipe-hint, .result-screen h2, .result-screen p, .corrections {
       color: white;
-      font-size: 1.8em;
-      margin-bottom: 10px;
-    }
-
-    .swipe-hint {
-      font-size: 0.9em;
-      color: white;
-      margin-bottom: 20px;
     }
 
     .start-button {
@@ -98,29 +89,6 @@
       cursor: default;
       opacity: 0.8;
     }
-
-    .result-screen h2 {
-      font-size: 1.5em;
-      color: white;
-    }
-
-    .result-screen p {
-      margin-top: 10px;
-      font-size: 1em;
-      color: white;
-    }
-
-    .corrections {
-      text-align: left;
-      max-width: 500px;
-      margin: 20px auto;
-      font-size: 0.95em;
-      color: white;
-    }
-
-    .corrections p {
-      margin: 4px 0;
-    }
   </style>
 </head>
 <body>
@@ -152,6 +120,7 @@
     let currentQuestion = 0;
     let score = 0;
     let incorrectAnswers = [];
+    let answered = false;
 
     function startQuiz() {
       document.querySelector('.start-screen').style.display = 'none';
@@ -163,6 +132,7 @@
       const container = document.getElementById('question-container');
       const progressText = document.getElementById('progress-text');
       container.innerHTML = '';
+      answered = false;
 
       const q = questions[currentQuestion];
       progressText.textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
@@ -185,6 +155,8 @@
     }
 
     function handleAnswer(clickedButton, index, buttonContainer) {
+      if (answered) return;
+      answered = true;
       const q = questions[currentQuestion];
       const buttons = buttonContainer.querySelectorAll('button');
 
@@ -204,15 +176,6 @@
       } else {
         incorrectAnswers.push({ question: q.text, correctAnswer: q.options[q.correct] });
       }
-
-      setTimeout(() => {
-        currentQuestion++;
-        if (currentQuestion < questions.length) {
-          showQuestion();
-        } else {
-          showResult();
-        }
-      }, 1200);
     }
 
     function showResult() {
@@ -220,12 +183,9 @@
       const resultScreen = document.querySelector('.result-screen');
       resultScreen.style.display = 'flex';
 
-      const scoreText = document.getElementById('score-text');
-      scoreText.textContent = `Du hast ${score} von ${questions.length} richtig.`;
-
+      document.getElementById('score-text').textContent = `Du hast ${score} von ${questions.length} richtig.`;
       const correctionList = document.getElementById('correction-list');
       correctionList.innerHTML = '';
-
       incorrectAnswers.forEach(item => {
         const p = document.createElement('p');
         p.innerHTML = `Frage: ${item.question.replace("___", "_____")}<br><strong>Richtige Antwort:</strong> ${item.correctAnswer}`;
@@ -237,9 +197,43 @@
       currentQuestion = 0;
       score = 0;
       incorrectAnswers = [];
-
       document.querySelector('.result-screen').style.display = 'none';
       document.querySelector('.start-screen').style.display = 'flex';
+    }
+
+    // Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        // Swipe Left
+        if (document.querySelector('.question-screen').style.display === 'flex') {
+          if (answered && currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            showQuestion();
+          } else if (answered && currentQuestion === questions.length - 1) {
+            showResult();
+          }
+        }
+      } else if (touchEndX > touchStartX + 50) {
+        // Swipe Right
+        if (document.querySelector('.question-screen').style.display === 'flex') {
+          if (currentQuestion > 0) {
+            currentQuestion--;
+            showQuestion();
+          }
+        }
+      }
     }
   </script>
 </body>
