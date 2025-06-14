@@ -117,7 +117,7 @@
     }
 
     .corrections p {
-      margin: 4px 0;
+      margin: 8px 0;
     }
 
     .nav-arrows {
@@ -201,6 +201,7 @@
     let currentQuestion = 0;
     let score = 0;
     let incorrectAnswers = [];
+    let userAnswers = [];
 
     function startQuiz() {
       document.querySelector('.start-screen').style.display = 'none';
@@ -250,6 +251,8 @@
         }
       });
 
+      userAnswers[currentQuestion] = index;
+
       if (index === q.correct) {
         score++;
       } else {
@@ -285,9 +288,11 @@
       const correctionList = document.getElementById('correction-list');
       correctionList.innerHTML = '';
 
-      incorrectAnswers.forEach(item => {
+      questions.forEach((q, i) => {
         const p = document.createElement('p');
-        p.innerHTML = `Frage: ${item.question.replace("___", "_____")}<br><strong>Richtige Antwort:</strong> ${item.correctAnswer}`;
+        const isCorrect = userAnswers[i] === q.correct;
+        const status = isCorrect ? "✅ Richtig" : `❌ Falsch – Richtige Antwort: ${q.options[q.correct]}`;
+        p.innerHTML = `<strong>Frage ${i + 1}:</strong> ${q.text.replace("___", "_____")}<br>${status}`;
         correctionList.appendChild(p);
       });
     }
@@ -296,6 +301,7 @@
       currentQuestion = 0;
       score = 0;
       incorrectAnswers = [];
+      userAnswers = [];
 
       document.querySelector('.result-screen').style.display = 'none';
       document.querySelector('.start-screen').style.display = 'flex';
