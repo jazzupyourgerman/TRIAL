@@ -78,7 +78,7 @@
       flex-direction: column;
       gap: 10px;
       max-width: 300px;
-      margin: 0 auto;
+      margin: 0 auto 20px auto;
     }
 
     .answers button {
@@ -100,6 +100,27 @@
       opacity: 0.8;
     }
 
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .nav-buttons button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #777;
+    }
+
     .result-screen h2 {
       font-size: 1.5em;
     }
@@ -118,25 +139,6 @@
 
     .corrections p {
       margin: 8px 0;
-    }
-
-    .nav-arrows {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 40px; /* <- hier wurde von 20px auf 40px geändert */
-      box-sizing: border-box;
-    }
-
-    .nav-arrows button {
-      background: none;
-      border: none;
-      font-size: 2em;
-      color: white;
-      cursor: pointer;
-      user-select: none;
     }
 
     .progress-bar {
@@ -175,9 +177,9 @@
     <p id="progress-text"></p>
     <div class="progress-bar"><div class="progress" id="progress-bar"></div></div>
     <div class="question" id="question-container"></div>
-    <div class="nav-arrows">
-      <button onclick="prevQuestion()">&#8592;</button>
-      <button onclick="nextQuestion()">&#8594;</button>
+    <div class="nav-buttons">
+      <button onclick="prevQuestion()">Zurück</button>
+      <button onclick="nextQuestion()">Weiter</button>
     </div>
   </div>
 
