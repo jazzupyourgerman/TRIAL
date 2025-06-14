@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lückensätze – Wohnen</title>
   <style>
     body, html {
@@ -11,10 +10,14 @@
       padding: 0;
       font-family: Arial, sans-serif;
       background-color: #000;
-      color: white;
+      color: #fff;
       text-align: center;
       height: 100%;
-      overflow: hidden;
+    }
+
+    img.logo {
+      width: 120px;
+      margin-top: 20px;
     }
 
     .start-screen, .question-screen, .result-screen {
@@ -33,7 +36,7 @@
     .start-screen h1 {
       color: white;
       font-size: 1.8em;
-      margin-bottom: 20px;
+      margin: 20px 0;
     }
 
     .start-button {
@@ -48,6 +51,15 @@
 
     .start-button:hover {
       background-color: #c62828;
+    }
+
+    .question-screen {
+      display: flex;
+      position: relative;
+    }
+
+    .question {
+      margin-bottom: 30px;
     }
 
     .question p {
@@ -85,11 +97,11 @@
 
     .answers button:disabled {
       cursor: default;
+      opacity: 0.8;
     }
 
     .result-screen h2 {
       font-size: 1.5em;
-      color: white;
     }
 
     .result-screen p {
@@ -108,18 +120,36 @@
       margin: 4px 0;
     }
 
-    .progress-bar {
+    .nav-arrows {
+      position: absolute;
+      top: 50%;
       width: 100%;
-      height: 8px;
-      background-color: #444;
-      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .nav-arrows button {
+      background: none;
+      border: none;
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #444;
+      margin-top: 10px;
+      width: 100%;
     }
 
     .progress {
-      height: 100%;
-      background-color: green;
+      height: 10px;
+      background: green;
       width: 0%;
-      transition: width 0.3s ease-in-out;
     }
 
     .social-icons {
@@ -128,7 +158,6 @@
 
     .social-icons a {
       margin: 0 10px;
-      display: inline-block;
       color: white;
       text-decoration: none;
       font-size: 1.5em;
@@ -137,39 +166,30 @@
 </head>
 <body>
   <div class="start-screen">
-    <h1>Wähle das richtige Wort!</h1>
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>Swipe left or right!</h1>
     <button class="start-button" onclick="startQuiz()">Los geht’s!</button>
   </div>
 
   <div class="question-screen">
-    <div class="progress-bar"><div class="progress" id="progress-bar"></div></div>
     <p id="progress-text"></p>
+    <div class="progress-bar"><div class="progress" id="progress-bar"></div></div>
     <div class="question" id="question-container"></div>
+    <div class="nav-arrows">
+      <button onclick="prevQuestion()">&#8592;</button>
+      <button onclick="nextQuestion()">&#8594;</button>
+    </div>
   </div>
 
   <div class="result-screen">
     <h2 id="score-text"></h2>
     <div class="corrections" id="correction-list"></div>
     <button class="start-button" onclick="restartQuiz()">Nochmal spielen</button>
-
-
-<div class="social-icons">
-  <a href="https://www.jazzupyourgerman.com" target="_blank" title="Website" aria-label="Website">
-    <svg width="28" height="28" fill="white" viewBox="0 0 24 24">
-      <path d="M12 2C6.48 2 2 6.48 2 12c0 4.84 3.65 8.82 8.38 9.74v-6.9h-2.5v-2.84h2.5V9.86c0-2.48 1.49-3.86 3.77-3.86 1.1 0 2.26.2 2.26.2v2.48h-1.27c-1.25 0-1.64.78-1.64 1.57v1.89h2.8l-.45 2.84h-2.35v6.9C18.35 20.82 22 16.84 22 12c0-5.52-4.48-10-10-10z"/>
-    </svg>
-  </a>
-  <a href="https://www.instagram.com/jazzupyourgerman/" target="_blank" title="Instagram" aria-label="Instagram">
-    <svg width="28" height="28" fill="white" viewBox="0 0 24 24">
-      <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.25a1 1 0 100 2 1 1 0 000-2z"/>
-    </svg>
-  </a>
-</div>
-
-
-
-
-
+    <div class="social-icons">
+      <a href="https://www.jazzupyourgerman.com" target="_blank">🌐</a>
+      <a href="https://www.instagram.com/jazzupyourgerman/" target="_blank">📸</a>
+    </div>
+  </div>
 
   <script>
     const questions = [
@@ -181,7 +201,6 @@
     let currentQuestion = 0;
     let score = 0;
     let incorrectAnswers = [];
-    let answerGiven = false;
 
     function startQuiz() {
       document.querySelector('.start-screen').style.display = 'none';
@@ -190,7 +209,6 @@
     }
 
     function showQuestion() {
-      answerGiven = false;
       const container = document.getElementById('question-container');
       const progressText = document.getElementById('progress-text');
       const progressBar = document.getElementById('progress-bar');
@@ -198,7 +216,7 @@
 
       const q = questions[currentQuestion];
       progressText.textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
-      progressBar.style.width = ((currentQuestion) / questions.length * 100) + "%";
+      progressBar.style.width = `${((currentQuestion) / questions.length) * 100}%`;
 
       const questionText = document.createElement('p');
       questionText.textContent = q.text;
@@ -218,9 +236,6 @@
     }
 
     function handleAnswer(clickedButton, index, buttonContainer) {
-      if (answerGiven) return;
-      answerGiven = true;
-
       const q = questions[currentQuestion];
       const buttons = buttonContainer.querySelectorAll('button');
 
@@ -231,7 +246,7 @@
         } else if (btn === clickedButton) {
           btn.style.backgroundColor = 'red';
         } else {
-          btn.style.backgroundColor = '#555';
+          btn.style.backgroundColor = '#007bff';
         }
       });
 
@@ -239,6 +254,23 @@
         score++;
       } else {
         incorrectAnswers.push({ question: q.text, correctAnswer: q.options[q.correct] });
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+      } else if (currentQuestion === questions.length - 1) {
+        currentQuestion++;
+        showResult();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
       }
     }
 
@@ -252,6 +284,7 @@
 
       const correctionList = document.getElementById('correction-list');
       correctionList.innerHTML = '';
+
       incorrectAnswers.forEach(item => {
         const p = document.createElement('p');
         p.innerHTML = `Frage: ${item.question.replace("___", "_____")}<br><strong>Richtige Antwort:</strong> ${item.correctAnswer}`;
@@ -263,60 +296,32 @@
       currentQuestion = 0;
       score = 0;
       incorrectAnswers = [];
+
       document.querySelector('.result-screen').style.display = 'none';
       document.querySelector('.start-screen').style.display = 'flex';
     }
 
-    // Swipe handling
-    let touchStartX = null;
-    document.addEventListener('touchstart', function(e) {
+    // Swipe gesture support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', e => {
       touchStartX = e.changedTouches[0].screenX;
     });
 
-    document.addEventListener('touchend', function(e) {
-      if (!answerGiven) return;
-      let touchEndX = e.changedTouches[0].screenX;
-      let diffX = touchEndX - touchStartX;
-
-      if (Math.abs(diffX) > 50) {
-        if (diffX < 0) {
-          // swipe left = next
-          if (currentQuestion < questions.length - 1) {
-            currentQuestion++;
-            showQuestion();
-          } else {
-            showResult();
-          }
-        } else {
-          // swipe right = previous
-          if (currentQuestion > 0) {
-            currentQuestion--;
-            showQuestion();
-          }
-        }
-      }
+    document.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
     });
 
-
-// Tastatur-Navigation
-document.addEventListener('keydown', function(e) {
-  if (!answerGiven) return;
-  if (e.key === 'ArrowRight') {
-    if (currentQuestion < questions.length - 1) {
-      currentQuestion++;
-      showQuestion();
-    } else {
-      showResult();
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        nextQuestion();
+      }
+      if (touchEndX > touchStartX + 50) {
+        prevQuestion();
+      }
     }
-  } else if (e.key === 'ArrowLeft') {
-    if (currentQuestion > 0) {
-      currentQuestion--;
-      showQuestion();
-    }
-  }
-});
-
   </script>
 </body>
 </html>
-
