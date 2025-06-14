@@ -117,7 +117,7 @@
     }
 
     .corrections p {
-      margin: 8px 0;
+      margin: 4px 0;
     }
 
     .nav-arrows {
@@ -126,17 +126,25 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 10px;
       box-sizing: border-box;
+      pointer-events: none;
     }
 
     .nav-arrows button {
       background: none;
       border: none;
-      font-size: 2em;
-      color: white;
+      font-size: 2.5em;
+      color: limegreen;
       cursor: pointer;
       user-select: none;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 600px) {
+      .nav-arrows {
+        padding: 0 25px;
+      }
     }
 
     .progress-bar {
@@ -201,7 +209,6 @@
     let currentQuestion = 0;
     let score = 0;
     let incorrectAnswers = [];
-    let userAnswers = [];
 
     function startQuiz() {
       document.querySelector('.start-screen').style.display = 'none';
@@ -251,8 +258,6 @@
         }
       });
 
-      userAnswers[currentQuestion] = index;
-
       if (index === q.correct) {
         score++;
       } else {
@@ -288,11 +293,9 @@
       const correctionList = document.getElementById('correction-list');
       correctionList.innerHTML = '';
 
-      questions.forEach((q, i) => {
+      incorrectAnswers.forEach(item => {
         const p = document.createElement('p');
-        const isCorrect = userAnswers[i] === q.correct;
-        const status = isCorrect ? "✅ Richtig" : `❌ Falsch – Richtige Antwort: ${q.options[q.correct]}`;
-        p.innerHTML = `<strong>Frage ${i + 1}:</strong> ${q.text.replace("___", "_____")}<br>${status}`;
+        p.innerHTML = `Frage: ${item.question.replace("___", "_____")}<br><strong>Richtige Antwort:</strong> ${item.correctAnswer}`;
         correctionList.appendChild(p);
       });
     }
@@ -301,7 +304,6 @@
       currentQuestion = 0;
       score = 0;
       incorrectAnswers = [];
-      userAnswers = [];
 
       document.querySelector('.result-screen').style.display = 'none';
       document.querySelector('.start-screen').style.display = 'flex';
