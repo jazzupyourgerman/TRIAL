@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lückensätze – Wohnen</title>
   <style>
     body, html {
@@ -12,6 +13,8 @@
       background-color: #000;
       color: white;
       text-align: center;
+      height: 100%;
+      overflow: hidden;
     }
 
     .start-screen, .question-screen, .result-screen {
@@ -27,15 +30,10 @@
       display: flex;
     }
 
-    .logo {
-      width: 300px;
-      height: auto;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
-
-    .start-screen h1, .swipe-hint, .result-screen h2, .result-screen p, .corrections {
+    .start-screen h1 {
       color: white;
+      font-size: 1.8em;
+      margin-bottom: 20px;
     }
 
     .start-button {
@@ -87,19 +85,64 @@
 
     .answers button:disabled {
       cursor: default;
-      opacity: 0.8;
+    }
+
+    .result-screen h2 {
+      font-size: 1.5em;
+      color: white;
+    }
+
+    .result-screen p {
+      margin-top: 10px;
+      font-size: 1em;
+    }
+
+    .corrections {
+      text-align: left;
+      max-width: 500px;
+      margin: 20px auto;
+      font-size: 0.95em;
+    }
+
+    .corrections p {
+      margin: 4px 0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background-color: #444;
+      margin-bottom: 10px;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: green;
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      font-size: 1.5em;
     }
   </style>
 </head>
 <body>
   <div class="start-screen">
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1>Swipe left or right!</h1>
-    <p class="swipe-hint">Updated: May 23rd</p>
+    <h1>Wähle das richtige Wort!</h1>
     <button class="start-button" onclick="startQuiz()">Los geht’s!</button>
   </div>
 
   <div class="question-screen">
+    <div class="progress-bar"><div class="progress" id="progress-bar"></div></div>
     <p id="progress-text"></p>
     <div class="question" id="question-container"></div>
   </div>
@@ -108,52 +151,23 @@
     <h2 id="score-text"></h2>
     <div class="corrections" id="correction-list"></div>
     <button class="start-button" onclick="restartQuiz()">Nochmal spielen</button>
+    <div class="social-icons">
+      <a href="https://www.jazzupyourgerman.com" target="_blank" title="Website">🌐</a>
+      <a href="https://www.instagram.com/jazzupyourgerman/" target="_blank" title="Instagram">📸</a>
+    </div>
   </div>
 
-<script>
-  const questions = [
-    { text: "Er hat keine ___ zur Behörde.", options: ["Verbindungen", "Verbindungens", "Verbindung", "Verbindungs"], correct: 2 },
-    { text: "Nach dem Schulabschluss ging er in ___ .", options: ["den Militärdienst", "die Militärdienst", "dem Militärdienst", "der Militärdienst"], correct: 0 },
-    { text: "Die Soldaten wohnen in ___.", options: ["der Kaserne", "den Kasernen", "die Kaserne", "dem Kaserne"], correct: 1 },
-    { text: "Er hat mir ___ erzählt.", options: ["etwas Interessanteres", "etwas Interessantem", "etwas Interessanten", "etwas Interessantes"], correct: 3 },
-    { text: "Er arbeitet jetzt bei ___.", options: ["die Behörde", "der Behörde", "dem Behörde", "eine Behörde"], correct: 1 },
-    { text: "Er lebt im Kloster und genießt ___ .", options: ["der spirituelle Rückzug", "die spirituelle Rückzug", "das spirituelle Rückzug", "den spirituellen Rückzug"], correct: 3 },
-    { text: "Der Zivildienst ist in vielen Ländern ___.", options: ["obligatorische", "obligatorisch", "obligatorischen", "obligatorisches"], correct: 1 },
-    { text: "In welchem ___ arbeitest du?", options: ["Bereiches", "Bereich", "Bereichen", "Bereiche"], correct: 1 },
-    { text: "Viele setzen auf ___ .", options: ["erneuerbare Energie", "erneuerbaren Energien", "erneuerbare Energien", "erneuerbarer Energien"], correct: 2 },
-    { text: "Ich möchte meine ___ besser verstehen.", options: ["Vergangenheiten", "Vergangenheit", "Vergangenheite", "Vergangenheits"], correct: 1 },
-    { text: "Ich muss mir das unbedingt ___ .", options: ["aufzuschreiben", "aufschreibe", "aufschreib", "aufschreiben"], correct: 3 },
-    { text: "Der Text hat 18 ___.", options: ["Zeile", "Zeiles", "Zeilens", "Zeilen"], correct: 3 },
-    { text: "___ du dich an die neue Schule anpassen?", options: ["Musst", "Mussten", "Musste", "Musstest"], correct: 3 },
-    { text: "Die ___ fällt vielen Menschen schwer.", options: ["Anpassung", "Anpassungs", "Anpassungen", "Anpassunge"], correct: 0 },
-    { text: "Er hat große ___ gezeigt.", options: ["Fähigkeits", "Fähigkeit", "Fähigkeiten", "Fähigkeite"], correct: 2 },
-    { text: "Er ist für seine ___ bekannt.", options: ["Anpassungsfähigkeiten", "Anpassungsfähig", "Anpassungsfähigkeit", "Anpassungsfähige"], correct: 2 },
-    { text: "Er hat seinen Abschluss an einer ___ Universität gemacht.", options: ["renommierte", "renommierter", "renommierten", "renommiertes"], correct: 2 },
-    { text: "Warum willst du ___ gehen?", options: ["sehr weit weg", "zu weit weg", "so weit", "so weit weg"], correct: 3 },
-    { text: "Er hat ein schlechtes ___.", options: ["Gewisse", "Gewissen", "Gewissens", "Gewissene"], correct: 1 },
-    { text: "Ist das mit deinem Gewissen ___?", options: ["vereinbar", "vereinbare", "vereinbares", "vereinbaren"], correct: 0 },
-    { text: "Er hat einen ___ für Zivildienst gestellt.", options: ["Antrag", "Antrage", "Antrags", "Anträge"], correct: 0 },
-    { text: "Die ___ ist zuständig für den Antrag.", options: ["Verwaltungens", "Verwaltung", "Verwaltungen", "Verwaltungs"], correct: 1 },
-    { text: "Wir führen ein ___ über unsere Zukunft.", options: ["Gespräch", "Gespräche", "Gespräches", "Gesprächs"], correct: 0 },
-    { text: "Ich habe mich um eine Position ___ .", options: ["bewerbtet", "beworben", "bewerbt", "beworbenen"], correct: 1 },
-    { text: "Ich ___ mir die Adresse ___.", options: ["hatte – aufgeschreibt", "habe – geschrieben auf", "hat – aufgeschrieben", "habe – aufgeschrieben"], correct: 3 },
-    { text: "Ich habe mich ___, keinen Dienst zu leisten.", options: ["entschiedenem", "entschied", "entschieden", "entscheide"], correct: 2 },
-    { text: "Ich ___ den Militärdienst.", options: ["verweigertes", "verweigere", "verweigert", "verweigern"], correct: 1 },
-    { text: "Er ist ein ___.", options: ["Verweiger", "Verweigertes", "Verweigerer", "Verweigere"], correct: 2 },
-    { text: "Kann ich das kurz ___?", options: ["benutzt", "benutzend", "benutzen", "benutztet"], correct: 2 },
-    { text: "Ich möchte dieses Gerät ___.", options: ["testen", "testet", "testete", "testest"], correct: 0 },
-    { text: "Ich werde nochmal bei ihm ___.", options: ["nachfrag", "nachgefragt", "nachfragt", "nachfragen"], correct: 3 },
-    { text: "Die ___ ist für Personal zuständig.", options: ["Abteilungen", "Abteilung", "Abteilungs", "Abteilunge"], correct: 1 },
-    { text: "Er ist schon lange ___.", options: ["erwachsens", "erwachsene", "erwachsen", "erwachsener"], correct: 2 },
-    { text: "Ich bin in Bayern ___ .", options: ["aufwuchs", "aufgewachsen", "aufwachsend", "aufgewachsenem"], correct: 1 },
-    { text: "Er lebt in einem buddhistischen ___.", options: ["Klosters", "Kloster", "Klostere", "Klostern"], correct: 1 },
-    { text: "Er ist seinem Lehrer ___ Frankreich gefolgt.", options: ["von", "nach", "in", "zu"], correct: 1 }
-  ];
+  <script>
+    const questions = [
+      { text: "Was für ___ Drucker ist das?", options: ["ein", "eine", "einem", "einen"], correct: 0 },
+      { text: "Das ist ___ moderne Kopierer.", options: ["ein", "der", "kein", "mein"], correct: 1 },
+      { text: "Das ist kein ___ Bildschirm.", options: ["moderner", "modernen", "moderne", "moderneren"], correct: 0 }
+    ];
 
     let currentQuestion = 0;
     let score = 0;
     let incorrectAnswers = [];
-    let answered = false;
+    let answerGiven = false;
 
     function startQuiz() {
       document.querySelector('.start-screen').style.display = 'none';
@@ -162,13 +176,15 @@
     }
 
     function showQuestion() {
+      answerGiven = false;
       const container = document.getElementById('question-container');
       const progressText = document.getElementById('progress-text');
+      const progressBar = document.getElementById('progress-bar');
       container.innerHTML = '';
-      answered = false;
 
       const q = questions[currentQuestion];
       progressText.textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
+      progressBar.style.width = ((currentQuestion) / questions.length * 100) + "%";
 
       const questionText = document.createElement('p');
       questionText.textContent = q.text;
@@ -188,8 +204,9 @@
     }
 
     function handleAnswer(clickedButton, index, buttonContainer) {
-      if (answered) return;
-      answered = true;
+      if (answerGiven) return;
+      answerGiven = true;
+
       const q = questions[currentQuestion];
       const buttons = buttonContainer.querySelectorAll('button');
 
@@ -200,7 +217,7 @@
         } else if (btn === clickedButton) {
           btn.style.backgroundColor = 'red';
         } else {
-          btn.style.backgroundColor = '#aaa';
+          btn.style.backgroundColor = '#555';
         }
       });
 
@@ -216,7 +233,9 @@
       const resultScreen = document.querySelector('.result-screen');
       resultScreen.style.display = 'flex';
 
-      document.getElementById('score-text').textContent = `Du hast ${score} von ${questions.length} richtig.`;
+      const scoreText = document.getElementById('score-text');
+      scoreText.textContent = `Du hast ${score} von ${questions.length} richtig.`;
+
       const correctionList = document.getElementById('correction-list');
       correctionList.innerHTML = '';
       incorrectAnswers.forEach(item => {
@@ -234,40 +253,36 @@
       document.querySelector('.start-screen').style.display = 'flex';
     }
 
-    // Swipe Support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', e => {
+    // Swipe handling
+    let touchStartX = null;
+    document.addEventListener('touchstart', function(e) {
       touchStartX = e.changedTouches[0].screenX;
     });
 
-    document.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
+    document.addEventListener('touchend', function(e) {
+      if (!answerGiven) return;
+      let touchEndX = e.changedTouches[0].screenX;
+      let diffX = touchEndX - touchStartX;
 
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50) {
-        // Swipe Left
-        if (document.querySelector('.question-screen').style.display === 'flex') {
-          if (answered && currentQuestion < questions.length - 1) {
+      if (Math.abs(diffX) > 50) {
+        if (diffX < 0) {
+          // swipe left = next
+          if (currentQuestion < questions.length - 1) {
             currentQuestion++;
             showQuestion();
-          } else if (answered && currentQuestion === questions.length - 1) {
+          } else {
             showResult();
           }
-        }
-      } else if (touchEndX > touchStartX + 50) {
-        // Swipe Right
-        if (document.querySelector('.question-screen').style.display === 'flex') {
+        } else {
+          // swipe right = previous
           if (currentQuestion > 0) {
             currentQuestion--;
             showQuestion();
           }
         }
       }
-    }
+    });
   </script>
 </body>
 </html>
+
