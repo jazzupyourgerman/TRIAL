@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lückensätze – Wohnen</title>
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
       background-color: #000;
       color: #fff;
       text-align: center;
-      height: 100%;
+      height: 100vh;
+      overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: pan-x;
     }
 
     img.logo {
@@ -195,9 +198,9 @@
 
   <script>
     const questions = [
-      { text: "Was für ___ Drucker ist das?", options: ["ein", "eine", "einem", "einen"], correct: 0 },
-      { text: "Das ist ___ moderne Kopierer.", options: ["ein", "der", "kein", "mein"], correct: 1 },
-      { text: "Das ist kein ___ Bildschirm.", options: ["moderner", "modernen", "moderne", "moderneren"], correct: 0 }
+      { text: "Mein___ letzter Urlaub habe ich auf den Kanarischen Inseln verbracht.", options: ["e", "en", "em", "er"], correct: 1 },
+      { text: "Es war wunderschön___.", options: ["e", "em", "er", "–"], correct: 3 },
+      { text: "Wir hatten immer schön___ Wetter.", options: ["es", "em", "en", "er"], correct: 0 },
     ];
 
     let currentQuestion = 0;
