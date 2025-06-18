@@ -124,6 +124,16 @@
       background-color: #777;
     }
 
+    .result-screen {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      overflow-y: auto; /* ✨ Scrollen nur auf Auswertungsseite erlauben */
+    }
+
     .result-screen h2 {
       font-size: 1.5em;
     }
@@ -198,9 +208,8 @@
 
   <script>
     const questions = [
-      { text: "Mein___ letzter Urlaub habe ich auf den Kanarischen Inseln verbracht.", options: ["e", "en", "em", "er"], correct: 1 },
-      { text: "Es war wunderschön___.", options: ["e", "em", "er", "–"], correct: 3 },
-      { text: "Wir hatten immer schön___ Wetter.", options: ["es", "em", "en", "er"], correct: 0 },
+      { text: "Das Hotel liegt ___ in der Stadt.", options: ["an", "in", "mitten", "aus"], correct: 2 },
+      { text: "Anna schaut ___ dem Fenster.", options: ["an", "aus", "in", "von"], correct: 1 },
     ];
 
     let currentQuestion = 0;
@@ -211,6 +220,7 @@
     function startQuiz() {
       document.querySelector('.start-screen').style.display = 'none';
       document.querySelector('.question-screen').style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // ✨ Scrollen verhindern
       showQuestion();
     }
 
@@ -286,6 +296,7 @@
       document.querySelector('.question-screen').style.display = 'none';
       const resultScreen = document.querySelector('.result-screen');
       resultScreen.style.display = 'flex';
+      document.body.style.overflow = 'auto'; // ✨ Scrollen auf Auswertungsseite erlauben
 
       const scoreText = document.getElementById('score-text');
       scoreText.textContent = `Du hast ${score} von ${questions.length} richtig.`;
@@ -310,6 +321,7 @@
 
       document.querySelector('.result-screen').style.display = 'none';
       document.querySelector('.start-screen').style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // ✨ Scrollen wieder deaktivieren
     }
 
     // Swipe gesture support
