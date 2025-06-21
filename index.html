@@ -207,10 +207,237 @@
   </div>
 
   <script>
-    const questions = [
-      { text: "Das Hotel liegt ___ in der Stadt.", options: ["an", "in", "mitten", "aus"], correct: 2 },
-      { text: "Anna schaut ___ dem Fenster.", options: ["an", "aus", "in", "von"], correct: 1 },
-    ];
+const questions = [
+  { 
+    text: "Wo ziehst du dich an?", 
+    options: [
+      "Ich ziehe mich im Schlafzimmer an.", 
+      "Ich ziehe im Schlafzimmer mich an.", 
+      "Ich mich ziehe im Schlafzimmer an.", 
+      "Ich ziehe an mich im Schlafzimmer."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Wann ziehst du dich elegant an?", 
+    options: [
+      "Ich ziehe elegant mich an, wenn ich ausgehe.", 
+      "Ich mich ziehe elegant an.", 
+      "Ich ziehe mich elegant an, wenn ich ausgehe.", 
+      "Ich ziehe mich an elegant."
+    ], 
+    correct: 2 
+  },
+  { 
+    text: "Was siehst du dir in der Stadt an?", 
+    options: [
+      "Ich sehe mir die Stadt an.", 
+      "Ich sehe die Stadt mir an.", 
+      "Ich mich sehe die Stadt an.", 
+      "Ich sehe an mir die Stadt."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Was kannst du dir gut merken?", 
+    options: [
+      "Ich merke mir gut Vokabeln.", 
+      "Ich mir merke gut Vokabeln.", 
+      "Ich merke gut mir Vokabeln.", 
+      "Ich merke mich gut Vokabeln."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Worüber ärgerst du dich?", 
+    options: [
+      "Ich ärgere über mich den Stau.", 
+      "Ich ärgere mich über den Stau.", 
+      "Ich ärgere den Stau mich.", 
+      "Ich ärgere mich den Stau über."
+    ], 
+    correct: 1 
+  },
+  { 
+    text: "Worauf freust du dich?", 
+    options: [
+      "Ich freue mich auf das Wochenende.", 
+      "Ich freue auf das Wochenende mich.", 
+      "Ich mich freue auf das Wochenende.", 
+      "Ich freue das Wochenende auf mich."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Wo entspannst du dich?", 
+    options: [
+      "Ich entspanne mich im Park.", 
+      "Ich entspanne im Park mich.", 
+      "Ich mich entspanne im Park.", 
+      "Ich entspanne mich auf dem Park."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Wohin legst du dich am Abend?", 
+    options: [
+      "Ich lege ins Bett mich.", 
+      "Ich lege mich ins Bett.", 
+      "Ich mich lege ins Bett.", 
+      "Ich lege mich Bett ins."
+    ], 
+    correct: 1 
+  },
+  { 
+    text: "Wie oft rasierst du dich?", 
+    options: [
+      "Ich rasieren mich jeden Tag.", 
+      "Ich rasiere mich jeden Tag.", 
+      "Ich mich rasiere jeden Tag.", 
+      "Ich rasiere jeden Tag mich."
+    ], 
+    correct: 1 
+  },
+  { 
+    text: "Was leihst du dir?", 
+    options: [
+      "Ich leihe mir ein Fahrrad.", 
+      "Ich mir leihe ein Fahrrad.", 
+      "Ich leihe mich ein Fahrrad.", 
+      "Ich leihen mir ein Fahrrad."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Was überlegst du dir?", 
+    options: [
+      "Ich überlege mir das gut.", 
+      "Ich überlege das mir gut.", 
+      "Ich mir überlege das gut.", 
+      "Ich überlege gut mir das."
+    ], 
+    correct: 0 
+  }
+
+  { 
+    text: "Wo ziehst du dich an?", 
+    options: [
+      "Ich ziehe mich im Schlafzimmer an.", 
+      "Ich ziehe im Schlafzimmer mich an.", 
+      "Ich mich ziehe im Schlafzimmer an.", 
+      "Ich ziehe an mich im Schlafzimmer."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Wann ziehst du dich elegant an?", 
+    options: [
+      "Ich ziehe elegant mich an, wenn ich ausgehe.", 
+      "Ich mich ziehe elegant an.", 
+      "Ich ziehe mich elegant an, wenn ich ausgehe.", 
+      "Ich ziehe mich an elegant."
+    ], 
+    correct: 2 
+  },
+  { 
+    text: "Was siehst du dir in der Stadt an?", 
+    options: [
+      "Ich sehe mir die Stadt an.", 
+      "Ich sehe die Stadt mir an.", 
+      "Ich mich sehe die Stadt an.", 
+      "Ich sehe an mir die Stadt."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Was kannst du dir gut merken?", 
+    options: [
+      "Ich merke mir gut Vokabeln.", 
+      "Ich mir merke gut Vokabeln.", 
+      "Ich merke gut mir Vokabeln.", 
+      "Ich merke mich gut Vokabeln."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Worüber ärgerst du dich?", 
+    options: [
+      "Ich ärgere über mich den Stau.", 
+      "Ich ärgere mich über den Stau.", 
+      "Ich ärgere den Stau mich.", 
+      "Ich ärgere mich den Stau über."
+    ], 
+    correct: 1 
+  },
+  { 
+    text: "Worauf freust du dich?", 
+    options: [
+      "Ich freue mich auf das Wochenende.", 
+      "Ich freue auf das Wochenende mich.", 
+      "Ich mich freue auf das Wochenende.", 
+      "Ich freue das Wochenende auf mich."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Wo entspannst du dich?", 
+    options: [
+      "Ich entspanne mich im Park.", 
+      "Ich entspanne im Park mich.", 
+      "Ich mich entspanne im Park.", 
+      "Ich entspanne mich auf dem Park."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Wohin legst du dich am Abend?", 
+    options: [
+      "Ich lege ins Bett mich.", 
+      "Ich lege mich ins Bett.", 
+      "Ich mich lege ins Bett.", 
+      "Ich lege mich Bett ins."
+    ], 
+    correct: 1 
+  },
+  { 
+    text: "Wie oft rasierst du dich?", 
+    options: [
+      "Ich rasieren mich jeden Tag.", 
+      "Ich rasiere mich jeden Tag.", 
+      "Ich mich rasiere jeden Tag.", 
+      "Ich rasiere jeden Tag mich."
+    ], 
+    correct: 1 
+  },
+  { 
+    text: "Was leihst du dir?", 
+    options: [
+      "Ich leihe mir ein Fahrrad.", 
+      "Ich mir leihe ein Fahrrad.", 
+      "Ich leihe mich ein Fahrrad.", 
+      "Ich leihen mir ein Fahrrad."
+    ], 
+    correct: 0 
+  },
+  { 
+    text: "Was überlegst du dir?", 
+    options: [
+      "Ich überlege mir das gut.", 
+      "Ich überlege das mir gut.", 
+      "Ich mir überlege das gut.", 
+      "Ich überlege gut mir das."
+    ], 
+    correct: 0 
+  }
+];
+
+
+
+
+
+
+
+
 
     let currentQuestion = 0;
     let score = 0;
