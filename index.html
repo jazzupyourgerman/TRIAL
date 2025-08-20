@@ -205,230 +205,152 @@
       <a href="https://www.instagram.com/jazzupyourgerman/" target="_blank">📸</a>
     </div>
   </div>
-
-  <script>
+<script>
 const questions = [
-  { 
-    text: "Wo ziehst du dich an?", 
-    options: [
-      "Ich ziehe mich im Schlafzimmer an.", 
-      "Ich ziehe im Schlafzimmer mich an.", 
-      "Ich mich ziehe im Schlafzimmer an.", 
-      "Ich ziehe an mich im Schlafzimmer."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Wann ziehst du dich elegant an?", 
-    options: [
-      "Ich ziehe elegant mich an, wenn ich ausgehe.", 
-      "Ich mich ziehe elegant an.", 
-      "Ich ziehe mich elegant an, wenn ich ausgehe.", 
-      "Ich ziehe mich an elegant."
-    ], 
-    correct: 2 
-  },
-  { 
-    text: "Was siehst du dir in der Stadt an?", 
-    options: [
-      "Ich sehe mir die Stadt an.", 
-      "Ich sehe die Stadt mir an.", 
-      "Ich mich sehe die Stadt an.", 
-      "Ich sehe an mir die Stadt."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Was kannst du dir gut merken?", 
-    options: [
-      "Ich merke mir gut Vokabeln.", 
-      "Ich mir merke gut Vokabeln.", 
-      "Ich merke gut mir Vokabeln.", 
-      "Ich merke mich gut Vokabeln."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Worüber ärgerst du dich?", 
-    options: [
-      "Ich ärgere über mich den Stau.", 
-      "Ich ärgere mich über den Stau.", 
-      "Ich ärgere den Stau mich.", 
-      "Ich ärgere mich den Stau über."
-    ], 
-    correct: 1 
-  },
-  { 
-    text: "Worauf freust du dich?", 
-    options: [
-      "Ich freue mich auf das Wochenende.", 
-      "Ich freue auf das Wochenende mich.", 
-      "Ich mich freue auf das Wochenende.", 
-      "Ich freue das Wochenende auf mich."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Wo entspannst du dich?", 
-    options: [
-      "Ich entspanne mich im Park.", 
-      "Ich entspanne im Park mich.", 
-      "Ich mich entspanne im Park.", 
-      "Ich entspanne mich auf dem Park."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Wohin legst du dich am Abend?", 
-    options: [
-      "Ich lege ins Bett mich.", 
-      "Ich lege mich ins Bett.", 
-      "Ich mich lege ins Bett.", 
-      "Ich lege mich Bett ins."
-    ], 
-    correct: 1 
-  },
-  { 
-    text: "Wie oft rasierst du dich?", 
-    options: [
-      "Ich rasieren mich jeden Tag.", 
-      "Ich rasiere mich jeden Tag.", 
-      "Ich mich rasiere jeden Tag.", 
-      "Ich rasiere jeden Tag mich."
-    ], 
-    correct: 1 
-  },
-  { 
-    text: "Was leihst du dir?", 
-    options: [
-      "Ich leihe mir ein Fahrrad.", 
-      "Ich mir leihe ein Fahrrad.", 
-      "Ich leihe mich ein Fahrrad.", 
-      "Ich leihen mir ein Fahrrad."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Was überlegst du dir?", 
-    options: [
-      "Ich überlege mir das gut.", 
-      "Ich überlege das mir gut.", 
-      "Ich mir überlege das gut.", 
-      "Ich überlege gut mir das."
-    ], 
-    correct: 0 
-  },
 
-  { 
-    text: "Wo ziehst du dich an?", 
-    options: [
-      "Ich ziehe mich im Schlafzimmer an.", 
-      "Ich ziehe im Schlafzimmer mich an.", 
-      "Ich mich ziehe im Schlafzimmer an.", 
-      "Ich ziehe an mich im Schlafzimmer."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Wann ziehst du dich elegant an?", 
-    options: [
-      "Ich ziehe elegant mich an, wenn ich ausgehe.", 
-      "Ich mich ziehe elegant an.", 
-      "Ich ziehe mich elegant an, wenn ich ausgehe.", 
-      "Ich ziehe mich an elegant."
-    ], 
-    correct: 2 
-  },
-  { 
-    text: "Was siehst du dir in der Stadt an?", 
-    options: [
-      "Ich sehe mir die Stadt an.", 
-      "Ich sehe die Stadt mir an.", 
-      "Ich mich sehe die Stadt an.", 
-      "Ich sehe an mir die Stadt."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Was kannst du dir gut merken?", 
-    options: [
-      "Ich merke mir gut Vokabeln.", 
-      "Ich mir merke gut Vokabeln.", 
-      "Ich merke gut mir Vokabeln.", 
-      "Ich merke mich gut Vokabeln."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Worüber ärgerst du dich?", 
-    options: [
-      "Ich ärgere über mich den Stau.", 
-      "Ich ärgere mich über den Stau.", 
-      "Ich ärgere den Stau mich.", 
-      "Ich ärgere mich den Stau über."
-    ], 
-    correct: 1 
-  },
-  { 
-    text: "Worauf freust du dich?", 
-    options: [
-      "Ich freue mich auf das Wochenende.", 
-      "Ich freue auf das Wochenende mich.", 
-      "Ich mich freue auf das Wochenende.", 
-      "Ich freue das Wochenende auf mich."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Wo entspannst du dich?", 
-    options: [
-      "Ich entspanne mich im Park.", 
-      "Ich entspanne im Park mich.", 
-      "Ich mich entspanne im Park.", 
-      "Ich entspanne mich auf dem Park."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Wohin legst du dich am Abend?", 
-    options: [
-      "Ich lege ins Bett mich.", 
-      "Ich lege mich ins Bett.", 
-      "Ich mich lege ins Bett.", 
-      "Ich lege mich Bett ins."
-    ], 
-    correct: 1 
-  },
-  { 
-    text: "Wie oft rasierst du dich?", 
-    options: [
-      "Ich rasieren mich jeden Tag.", 
-      "Ich rasiere mich jeden Tag.", 
-      "Ich mich rasiere jeden Tag.", 
-      "Ich rasiere jeden Tag mich."
-    ], 
-    correct: 1 
-  },
-  { 
-    text: "Was leihst du dir?", 
-    options: [
-      "Ich leihe mir ein Fahrrad.", 
-      "Ich mir leihe ein Fahrrad.", 
-      "Ich leihe mich ein Fahrrad.", 
-      "Ich leihen mir ein Fahrrad."
-    ], 
-    correct: 0 
-  },
-  { 
-    text: "Was überlegst du dir?", 
-    options: [
-      "Ich überlege mir das gut.", 
-      "Ich überlege das mir gut.", 
-      "Ich mir überlege das gut.", 
-      "Ich überlege gut mir das."
-    ], 
-    correct: 0 
-  }
+  // Wortschatz: Einwohner, Brüche
+  { text: "Was bedeutet ‚Einwohner‘?",
+    options: ["inhabitant", "neighbor"],
+    correct: 0 },
+
+  { text: "1/3 heißt auf Deutsch:",
+    options: ["ein Drittel", "ein Viertel"],
+    correct: 0 },
+
+  { text: "Wie sagt man ‚ein Fünftel der Ukrainer‘?",
+    options: ["1/5 der Ukrainer", "5 Ukrainer"],
+    correct: 0 },
+
+  { text: "Was bedeutet ‚das Doppelte von 10‘?",
+    options: ["20", "5"],
+    correct: 0 },
+
+  { text: "Was bedeutet ‚das Dreifache von 4‘?",
+    options: ["12", "8"],
+    correct: 0 },
+
+  { text: "50 % bedeutet:",
+    options: ["die Hälfte", "das Doppelte"],
+    correct: 0 },
+
+  // Schule
+  { text: "Was ist ‚die Federtasche‘?",
+    options: ["pencil case", "backpack"],
+    correct: 0 },
+
+  { text: "Was ist ‚der Schulranzen‘?",
+    options: ["school backpack", "lunch box"],
+    correct: 0 },
+
+  { text: "Was ist ‚die Schultüte‘?",
+    options: ["cone with sweets on first school day", "a school test"],
+    correct: 0 },
+
+  // für/dafür
+  { text: "‚Interessierst du dich für die Filme?‘ = ",
+    options: ["Do you care about the movies?", "Do you act in the movies?"],
+    correct: 0 },
+
+  { text: "‚Interessierst du dich dafür?‘ ersetzt:",
+    options: ["das Objekt mit ‚für‘", "das Subjekt"],
+    correct: 0 },
+
+  { text: "‚Ich bin glücklich über das Wetter‘ = ",
+    options: ["I am happy about the weather", "I am sad about the weather"],
+    correct: 0 },
+
+  { text: "‚Ich bin glücklich darüber, dass das Wetter schön ist.‘ = ",
+    options: ["I am happy that the weather is nice", "I am surprised that the weather is nice"],
+    correct: 0 },
+
+  // Berlin
+  { text: "Welches Gebäude gehört zu Berlin?",
+    options: ["das Brandenburger Tor", "der Kölner Dom"],
+    correct: 0 },
+
+  { text: "Was steht auf der Museumsinsel?",
+    options: ["das neue Museum", "der Eiffelturm"],
+    correct: 0 },
+
+  { text: "Der Reichstag ist Sitz von …",
+    options: ["dem Bundestag", "dem Europarat"],
+    correct: 0 },
+
+  // Perfekt vs. Präteritum
+  { text: "‚ich habe gespielt‘ ist:",
+    options: ["Perfekt", "Präteritum"],
+    correct: 0 },
+
+  { text: "‚ich spielte‘ ist:",
+    options: ["Präteritum", "Perfekt"],
+    correct: 0 },
+
+  { text: "‚ich schlief‘ ist:",
+    options: ["Präteritum", "Perfekt"],
+    correct: 0 },
+
+  { text: "‚ich habe geschlafen‘ ist:",
+    options: ["Perfekt", "Präteritum"],
+    correct: 0 },
+
+  // Irreguläre Verben
+  { text: "Präteritum von ‚essen‘ ist:",
+    options: ["ich aß", "ich esse"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚gehen‘ ist:",
+    options: ["ich ging", "ich gehe"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚sehen‘ ist:",
+    options: ["ich sah", "ich sehe"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚liegen‘ ist:",
+    options: ["ich lag", "ich liegte"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚fahren‘ ist:",
+    options: ["ich fuhr", "ich fahre"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚lesen‘ ist:",
+    options: ["ich las", "ich lese"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚treffen‘ ist:",
+    options: ["ich traf", "ich treffe"],
+    correct: 0 },
+
+  // Modalverben Präteritum
+  { text: "Präteritum von ‚ich darf‘ ist:",
+    options: ["ich durfte", "ich dorfte"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚ich muss‘ ist:",
+    options: ["ich musste", "ich misste"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚ich soll‘ ist:",
+    options: ["ich sollte", "ich solle"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚ich will‘ ist:",
+    options: ["ich wollte", "ich wullte"],
+    correct: 0 },
+
+  { text: "Präteritum von ‚ich kann‘ ist:",
+    options: ["ich konnte", "ich kennte"],
+    correct: 0 },
+
+  { text: "‚ich dürfte‘ ist:",
+    options: ["Konjunktiv II", "Präteritum"],
+    correct: 0 },
+
+  { text: "‚ich könnte‘ ist:",
+    options: ["Konjunktiv II", "Präteritum"],
+    correct: 0 }
+
 ];
     let currentQuestion = 0;
     let score = 0;
