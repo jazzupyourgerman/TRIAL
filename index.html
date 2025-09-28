@@ -206,171 +206,373 @@
     </div>
   </div>
 <script>
-const questions = [
-  { "text": "Schön, dich", "options": ["sehen", "gesehen", "zusehen", "zu sehen"], "correct": 3 },
-  { "text": "Du siehst immer noch so aus wie vor 20 Jahren. Du hast dich überhaupt nicht _", "options": ["verändert", "vergeändert", "verandert", "verändern"], "correct": 0 },
-  { "text": "Hast du am Wochenende schon etwas vor? – Ja, ich habe schon eine _", "options": ["Veränderung", "Vereinbarung", "Verabredung", "Verabmachung"], "correct": 2 },
-  { "text": "Habt ihr eine neue Adresse? – Ja, wir _ letzten Monat umgezogen.", "options": ["hat", "haben", "seid", "sind"], "correct": 3 },
-  { "text": "Was wolltest du als Kind werden? – Ich wollte Astronaut werden, jetzt bin ich Lehrer _", "options": ["werden", "worden", "geworden", "werde"], "correct": 2 },
-  { "text": "Wo habt ihr eure letzten Ferien _ ?", "options": ["verbracht", "verbrachte", "verbringt", "verbungen"], "correct": 0 },
-  { "text": "Der Antiquitätenhändler stellt seine Uhren im _ aus.", "options": ["Sehfenster", "Auslage", "Schaufenster", "Aussicht"], "correct": 2 },
-  { "text": "Kannst du mir bitte die Butter geben? – Natürlich, ich gebe _", "options": ["dich sie", "dir ihn", "sie dich", "sie dir"], "correct": 3 },
-  { "text": "Wenn man ein Fest geben will, muss man vorher viel planen und _", "options": ["organisieren", "anprobieren", "schenken", "erkennen"], "correct": 0 },
-  { "text": "Ich finde meinen Kugelschreiber nicht! – Hier, ich _ dir meinen Kugelschreiber.", "options": ["kaufe", "leihe", "schenke", "verkaufe"], "correct": 1 },
-  { "text": "Meine Eltern kommen am Wochenende zu Besuch. Ich möchte _ etwas Besonderes kochen.", "options": ["ihr", "uns", "ihnen", "ihren"], "correct": 2 },
-  { "text": "Wie sieht deine Wohnung aus? Du musst sie mir genau _", "options": ["sehen", "denken", "erkennen", "beschreiben"], "correct": 3 },
-  { "text": "Wascht _ bitte vor dem Essen die Hände!", "options": ["dich", "euch", "Ihnen", "mich"], "correct": 1 },
-  { "text": "Für Anna ist das Aussehen sehr wichtig. Sie schminkt _ jeden Tag.", "options": ["sich", "ihr", "sie", "es"], "correct": 0 },
-  { "text": "Ich nehme jeden Morgen _ Bus wie mein Kollege.", "options": ["dasselbe", "einen anderen", "den anderen", "denselben"], "correct": 3 },
-  { "text": "Trägst du dieselben Schuhe wie gestern? – Nein, heute trage ich _", "options": ["andere", "selben", "die gleiche", "den anderen"], "correct": 0 },
-  { "text": "Sie sehen sich wirklich sehr ähnlich. Man kann sie kaum _", "options": ["merken", "verwechseln", "unterscheiden", "vergleichen"], "correct": 1 },
-  { "text": "War das Arno? – Nein, das war sein _ bruder Holger.", "options": ["Doppel", "Zwillings", "Klon", "Groß"], "correct": 1 },
-  { "text": "Im nächsten Jahr _ ich immer meine Hausaufgaben machen.", "options": ["werde", "musste", "werden", "sollte"], "correct": 0 },
-  { "text": "Ihr _ den Text noch einmal lesen müssen.", "options": ["müsst", "wirdet", "werdet", "gewordet"], "correct": 0 },
-  { "text": "In der Zukunft wird es viele Elektroautos _", "options": ["sein", "geben", "werden", "existieren"], "correct": 1 },
-  { "text": "Der Test ist schwierig. Du musst dich gut darauf _", "options": ["vorbereiten", "lernen", "verbessern", "lesen"], "correct": 0 },
-  { "text": "35 ist die _ von 70.", "options": ["Doppelte", "Hälfte", "zweimalig", "Drittel"], "correct": 1 },
-  { "text": "Du kaufst in diesem teuren Geschäft? Da zahlst du doch für alles das _", "options": ["Hälfte", "Dreifache", "Viertel", "Viele"], "correct": 1 },
-  { "text": "Der Reichstag und das Brandenburger Tor sind Berliner _", "options": ["Seen", "Geschichten", "Sehenswürdigkeiten", "Gerichte"], "correct": 2 },
-  { "text": "Kommst du mit ins Museum? – Nein, ich möchte lieber einen _ machen.", "options": ["Einkaufsbummel", "Ausstellung", "Bootsfahrt", "Sehenswürdigkeit"], "correct": 0 },
-  { "text": "_ ich ein Kind war, mussten wir auch am Samstag in die Schule gehen.", "options": ["Weil", "Damals", "Wenn", "Als"], "correct": 3 },
-  { "text": "_ ihr in eurer Kindheit oft schwimmen?", "options": ["Gangt", "Hattet", "Gingt", "Lagt"], "correct": 2 },
-  { "text": "Früher _ man auch am Wochenende.", "options": ["Arbeit", "arbeitete", "gearbeitet", "arbeitet"], "correct": 1 },
-  { "text": "Vor hundert Jahren _ es viel weniger Verkehr.", "options": ["gabte", "gabi", "gibte", "gab"], "correct": 3 }
-];
-    let currentQuestion = 0;
-    let score = 0;
-    let incorrectAnswers = [];
-    let userAnswers = [];
 
-    function startQuiz() {
-      document.querySelector('.start-screen').style.display = 'none';
-      document.querySelector('.question-screen').style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // ✨ Scrollen verhindern
-      showQuestion();
+
+
+
+
+const questions =
+
+[
+  { "text": "Wenn ich im Lotto gewinnen würde, ___ ich ein Auto kaufen.", 
+    "options": ["würde", "hätte"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich im Lotto gewonnen hätte, ___ ich ein Auto gekauft.", 
+    "options": ["hätte", "würde"], 
+    "correct": 0 },
+
+  { "text": "Wenn das Büro brennen würde, ___ ich in die Bibliothek gehen.", 
+    "options": ["würde", "hätte"], 
+    "correct": 0 },
+
+  { "text": "Wenn das Büro gebrannt hätte, ___ ich in die Bibliothek gegangen.", 
+    "options": ["wäre", "würde"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich im Lotto gewinnen würde, ___ ich viel Geld.", 
+    "options": ["hätte", "wäre"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich gestern im Lotto gewonnen hätte, ___ ich viel Geld gehabt.", 
+    "options": ["hätte", "würde"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich kein Geld hätte, ___ ich Hunger.", 
+    "options": ["hätte", "wäre"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich gestern kein Geld gehabt hätte, ___ ich Hunger gehabt.", 
+    "options": ["hätte", "würde"], 
+    "correct": 0 },
+
+  { "text": "Ich ___ zu Hause bleiben, wenn ich krank wäre.", 
+    "options": ["würde", "hätte"], 
+    "correct": 0 },
+
+  { "text": "Gestern ___ ich zu Hause geblieben, wenn ich krank gewesen wäre.", 
+    "options": ["wäre", "würde"], 
+    "correct": 0 },
+
+  { "text": "Bitte achte ___ deine Gesundheit.", 
+    "options": ["auf", "darauf"], 
+    "correct": 0 },
+
+  { "text": "Man kann immer etwas ___ machen. (Nomen)", 
+    "options": ["Besseres", "besser"], 
+    "correct": 0 },
+
+  { "text": "Man kann immer etwas ___ machen. (Adverb)", 
+    "options": ["besser", "Besseres"], 
+    "correct": 0 },
+
+  { "text": "Ich habe mich schon ___ diese Stelle beworben.", 
+    "options": ["auf", "zu"], 
+    "correct": 0 },
+
+  { "text": "Nach dem Gespräch war ich wirklich ___ . (sehr positive Emotion)", 
+    "options": ["froh", "zufrieden"], 
+    "correct": 0 },
+
+  { "text": "Nach der Prüfung war ich ___ . (okay mit dem Resultat)", 
+    "options": ["zufrieden", "froh"], 
+    "correct": 0 },
+
+  { "text": "Ich habe das Projekt schon vor zwei Wochen ___ .", 
+    "options": ["fertig gemacht", "fertig werde"], 
+    "correct": 0 },
+
+  { "text": "Bitte bringen Sie Ihren ___ mit.", 
+    "options": ["Lebenslauf", "Arbeitsplatz"], 
+    "correct": 0 },
+
+  { "text": "Ich bereite mich ___ das Meeting vor.", 
+    "options": ["auf", "zu"], 
+    "correct": 0 },
+
+  { "text": "Nach meinem ___ war ich wieder motiviert.", 
+    "options": ["Urlaub", "Vertrag"], 
+    "correct": 0 },
+
+  { "text": "Hast du dich im Büro ___ gefühlt?", 
+    "options": ["wertgeschätzt", "geärgert"], 
+    "correct": 0 },
+
+  { "text": "Gestern habe ich mich sehr ___ .", 
+    "options": ["geärgert", "gefreut"], 
+    "correct": 0 },
+
+  { "text": "Ich muss heute viele Dokumente ___ .", 
+    "options": ["ausfüllen", "wegwerfen"], 
+    "correct": 0 },
+
+  { "text": "Nur 20 % der Anstrengung erledigen oft schon 80 % der ___.", 
+    "options": ["Aufgabe", "Freizeit"], 
+    "correct": 0 },
+
+  { "text": "Ich war vor zwei Wochen schon ___ .", 
+    "options": ["vorbereitet", "bereitete"], 
+    "correct": 0 },
+
+  { "text": "Er hat mich gestern sehr ___ . (aktiv)", 
+    "options": ["verärgert", "freut"], 
+    "correct": 0 },
+
+  { "text": "Mir wurde gestern von der Firma ___ .", 
+    "options": ["gekündigt", "geschrieben"], 
+    "correct": 0 },
+
+  { "text": "Wenn es gestern geregnet hätte, ___ ich zu Hause geblieben.", 
+    "options": ["wäre", "würde"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich im Lotto gewonnen hätte, ___ ich ein Auto gekauft.", 
+    "options": ["hätte", "würde"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich gestern kein Geld gehabt hätte, ___ ich Hunger gehabt.", 
+    "options": ["hätte", "würde"], 
+    "correct": 0 },
+
+  { "text": "Ich ___ zu Hause bleiben, wenn ich krank wäre.", 
+    "options": ["würde", "wäre"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich krank wäre, ___ ich nicht glücklich.", 
+    "options": ["wäre", "hätte"], 
+    "correct": 0 },
+
+  { "text": "Wenn ich arm wäre, ___ ich nicht traurig.", 
+    "options": ["wäre", "würde"], 
+    "correct": 0 },
+
+  { "text": "Ich ___ Geld, wenn ich reich wäre.", 
+    "options": ["hätte", "wäre"], 
+    "correct": 0 },
+
+  { "text": "Ich ___ Millionär, wenn ich im Lotto gewinnen würde.", 
+    "options": ["wäre", "hätte"], 
+    "correct": 0 }
+]
+
+
+
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ✨ Shuffle-Funktion
+function shuffleArray(array) {
+  return array
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
+// ✨ Optionen zufällig mischen und correct-Index anpassen
+function randomizeQuestions(questions) {
+  return questions.map(q => {
+    const options = shuffleArray(q.options);
+    const correctAnswer = q.options[q.correct];
+    const correctIndex = options.indexOf(correctAnswer);
+    return {
+      text: q.text,
+      options: options,
+      correct: correctIndex
+    };
+  });
+}
+
+// Verwende die zufällig gemischten Fragen
+let randomizedQuestions = randomizeQuestions(questions);
+
+let currentQuestion = 0;
+let score = 0;
+let incorrectAnswers = [];
+let userAnswers = [];
+
+function startQuiz() {
+  document.querySelector('.start-screen').style.display = 'none';
+  document.querySelector('.question-screen').style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // ✨ Scrollen verhindern
+  showQuestion();
+}
+
+function showQuestion() {
+  const container = document.getElementById('question-container');
+  const progressText = document.getElementById('progress-text');
+  const progressBar = document.getElementById('progress-bar');
+  container.innerHTML = '';
+
+  const q = randomizedQuestions[currentQuestion];
+  progressText.textContent = `Frage ${currentQuestion + 1} von ${randomizedQuestions.length}`;
+  progressBar.style.width = `${((currentQuestion) / randomizedQuestions.length) * 100}%`;
+
+  const questionText = document.createElement('p');
+  questionText.textContent = q.text;
+  container.appendChild(questionText);
+
+  const answerButtons = document.createElement('div');
+  answerButtons.classList.add('answers');
+
+  q.options.forEach((option, index) => {
+    const btn = document.createElement('button');
+    btn.textContent = option;
+    btn.onclick = () => handleAnswer(btn, index, answerButtons);
+    answerButtons.appendChild(btn);
+  });
+
+  container.appendChild(answerButtons);
+}
+
+function handleAnswer(clickedButton, index, buttonContainer) {
+  const q = randomizedQuestions[currentQuestion];
+  const buttons = buttonContainer.querySelectorAll('button');
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === q.correct) {
+      btn.style.backgroundColor = 'green';
+    } else if (btn === clickedButton) {
+      btn.style.backgroundColor = 'red';
+    } else {
+      btn.style.backgroundColor = '#007bff';
     }
+  });
 
-    function showQuestion() {
-      const container = document.getElementById('question-container');
-      const progressText = document.getElementById('progress-text');
-      const progressBar = document.getElementById('progress-bar');
-      container.innerHTML = '';
+  userAnswers[currentQuestion] = index;
 
-      const q = questions[currentQuestion];
-      progressText.textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
-      progressBar.style.width = `${((currentQuestion) / questions.length) * 100}%`;
+  if (index === q.correct) {
+    score++;
+  } else {
+    incorrectAnswers.push({ question: q.text, correctAnswer: q.options[q.correct] });
+  }
+}
 
-      const questionText = document.createElement('p');
-      questionText.textContent = q.text;
-      container.appendChild(questionText);
+function nextQuestion() {
+  if (currentQuestion < randomizedQuestions.length - 1) {
+    currentQuestion++;
+    showQuestion();
+  } else if (currentQuestion === randomizedQuestions.length - 1) {
+    currentQuestion++;
+    showResult();
+  }
+}
 
-      const answerButtons = document.createElement('div');
-      answerButtons.classList.add('answers');
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    showQuestion();
+  }
+}
 
-      q.options.forEach((option, index) => {
-        const btn = document.createElement('button');
-        btn.textContent = option;
-        btn.onclick = () => handleAnswer(btn, index, answerButtons);
-        answerButtons.appendChild(btn);
-      });
+function showResult() {
+  document.querySelector('.question-screen').style.display = 'none';
+  const resultScreen = document.querySelector('.result-screen');
+  resultScreen.style.display = 'flex';
+  document.body.style.overflow = 'auto'; // ✨ Scrollen auf Auswertungsseite erlauben
 
-      container.appendChild(answerButtons);
-    }
+  const scoreText = document.getElementById('score-text');
+  scoreText.textContent = `Du hast ${score} von ${randomizedQuestions.length} richtig.`;
 
-    function handleAnswer(clickedButton, index, buttonContainer) {
-      const q = questions[currentQuestion];
-      const buttons = buttonContainer.querySelectorAll('button');
+  const correctionList = document.getElementById('correction-list');
+  correctionList.innerHTML = '';
 
-      buttons.forEach((btn, idx) => {
-        btn.disabled = true;
-        if (idx === q.correct) {
-          btn.style.backgroundColor = 'green';
-        } else if (btn === clickedButton) {
-          btn.style.backgroundColor = 'red';
-        } else {
-          btn.style.backgroundColor = '#007bff';
-        }
-      });
+  randomizedQuestions.forEach((q, i) => {
+    const p = document.createElement('p');
+    const isCorrect = userAnswers[i] === q.correct;
+    const status = isCorrect ? "✅ Richtig" : `❌ Falsch – Richtige Antwort: ${q.options[q.correct]}`;
+    p.innerHTML = `<strong>Frage ${i + 1}:</strong> ${q.text.replace("___", "_____")}<br>${status}`;
+    correctionList.appendChild(p);
+  });
+}
 
-      userAnswers[currentQuestion] = index;
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  incorrectAnswers = [];
+  userAnswers = [];
 
-      if (index === q.correct) {
-        score++;
-      } else {
-        incorrectAnswers.push({ question: q.text, correctAnswer: q.options[q.correct] });
-      }
-    }
+  // ✨ Neue Randomisierung bei Neustart
+  randomizedQuestions = randomizeQuestions(questions);
 
-    function nextQuestion() {
-      if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        showQuestion();
-      } else if (currentQuestion === questions.length - 1) {
-        currentQuestion++;
-        showResult();
-      }
-    }
+  document.querySelector('.result-screen').style.display = 'none';
+  document.querySelector('.start-screen').style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // ✨ Scrollen wieder deaktivieren
+}
 
-    function prevQuestion() {
-      if (currentQuestion > 0) {
-        currentQuestion--;
-        showQuestion();
-      }
-    }
+// Swipe gesture support
+let touchStartX = 0;
+let touchEndX = 0;
 
-    function showResult() {
-      document.querySelector('.question-screen').style.display = 'none';
-      const resultScreen = document.querySelector('.result-screen');
-      resultScreen.style.display = 'flex';
-      document.body.style.overflow = 'auto'; // ✨ Scrollen auf Auswertungsseite erlauben
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
 
-      const scoreText = document.getElementById('score-text');
-      scoreText.textContent = `Du hast ${score} von ${questions.length} richtig.`;
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
 
-      const correctionList = document.getElementById('correction-list');
-      correctionList.innerHTML = '';
-
-      questions.forEach((q, i) => {
-        const p = document.createElement('p');
-        const isCorrect = userAnswers[i] === q.correct;
-        const status = isCorrect ? "✅ Richtig" : `❌ Falsch – Richtige Antwort: ${q.options[q.correct]}`;
-        p.innerHTML = `<strong>Frage ${i + 1}:</strong> ${q.text.replace("___", "_____")}<br>${status}`;
-        correctionList.appendChild(p);
-      });
-    }
-
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      incorrectAnswers = [];
-      userAnswers = [];
-
-      document.querySelector('.result-screen').style.display = 'none';
-      document.querySelector('.start-screen').style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // ✨ Scrollen wieder deaktivieren
-    }
-
-    // Swipe gesture support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    document.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50) {
-        nextQuestion();
-      }
-      if (touchEndX > touchStartX + 50) {
-        prevQuestion();
-      }
-    }
-  </script>
+function handleSwipe() {
+  if (touchEndX < touchStartX - 50) {
+    nextQuestion();
+  }
+  if (touchEndX > touchStartX + 50) {
+    prevQuestion();
+  }
+}
+</script>
 </body>
 </html>
